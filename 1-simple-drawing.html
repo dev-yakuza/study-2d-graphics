@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <style>
+    #canvas {
+      border: 1px solid #000;
+    }
+    </style>
+
+    <script>
+      function draw() {
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Draw line
+        ctx.strokeStyle = 'rgb(200, 0, 0)';
+        ctx.beginPath();
+        ctx.moveTo(50, 50);
+        ctx.lineTo(150, 150);
+        ctx.stroke();
+
+        ctx.strokeStyle = 'rgb(0, 200, 0)';
+        ctx.beginPath();
+        ctx.moveTo(150, 50);
+        ctx.lineTo(50, 150);
+        ctx.stroke();
+
+        // Draw polygon
+        ctx.strokeStyle = 'rgb(0, 0, 200)';
+        ctx.beginPath();
+        ctx.moveTo(250, 50);
+        ctx.lineTo(200, 100);
+        ctx.lineTo(220, 150);
+        ctx.lineTo(280, 150);
+        ctx.lineTo(300, 100);
+        ctx.closePath();
+        ctx.stroke();
+
+        // Draw and file polygon
+        ctx.fillStyle = 'rgb(200, 0, 200)';
+        ctx.beginPath();
+        ctx.moveTo(400, 50);
+        ctx.lineTo(350, 100);
+        ctx.lineTo(370, 150);
+        ctx.lineTo(430, 150);
+        ctx.lineTo(450, 100);
+        ctx.closePath();
+        ctx.fill();
+
+        // Draw rectangle
+        ctx.fillStyle = 'rgb(200, 100, 100)';
+        ctx.strokeRect(50, 200, 150, 100);
+
+        // Draw and fill rectangle
+        ctx.fillStyle = 'rgb(200, 200, 0)';
+        ctx.fillRect(250, 200, 150, 100);
+
+        // Draw circle
+        ctx.strokeStyle = 'rgb(100, 200, 100)';
+        ctx.beginPath();
+        ctx.arc(100, 400, 50, 0, 2 * Math.PI);
+        ctx.closePath();
+        ctx.stroke();
+
+        // Draw and fill circle
+        ctx.fillStyle = 'rgb(100, 200, 100)';
+        ctx.beginPath();
+        ctx.arc(250, 400, 50, 0, 2 * Math.PI);
+        ctx.closePath();
+        ctx.fill();
+
+        // Draw text
+        ctx.font = '40px serif';
+        ctx.fillStyle = 'rgb(100, 100, 100)';
+        ctx.fillText('TEXT', 350, 420);
+      }
+    </script>
+  </head>
+
+  <body onload="draw()">
+    <canvas id="canvas" width="500" height="500"></canvas>
+  </body>
+</html>
