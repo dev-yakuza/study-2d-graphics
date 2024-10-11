@@ -1,0 +1,227 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/function.js"></script>
+  </head>
+  <body onload="initialize()">
+      <div id="functionArea">
+          <div id="canvasSizeInputArea">
+              <div class="paramRow" >
+                  <div>Width</div>
+                  <div class="spaceH"></div>
+                  <input id="canvasWidth" type="number" class="paramInputNumber"
+                      onchange="onChangeCanvasSize()"></input>
+              </div>
+              <div class="spaceH"></div>
+              <div class="spaceH"></div>
+              <div class="paramRow">
+                  <div>Height</div>
+                  <div class="spaceH"></div>
+                  <input id="canvasHeight" type="number" class="paramInputNumber"
+                      onchange="onChangeCanvasSize()"></input>
+              </div>
+          </div>
+          <button onclick="saveAsImageFile()" class="loadItemsButton">Save as image file</button>
+      </div>
+      <div id="mainArea">
+          <div id="paletteArea">
+              <div class="paletteButton" onclick="onClickSquareButton()">
+                  <div class="paletteButtonText">■</div>
+              </div>
+              <div class="paletteButton" onclick="onClickCircleButton()">
+                  <div class="paletteButtonText">●</div>
+              </div>
+              <div class="paletteButton" onclick="onClickTriangleButton()">
+                  <div class="paletteButtonText">▲</div>
+              </div>
+          </div>
+          <canvas id="canvasArea">
+          </canvas>
+          <div id="propertyArea">
+              <div id="itemListArea">
+                  <div id="itemListLabel">
+                      <div>Item List</div>
+                      <div id="buttonArea">
+                          <button onclick="onClickLoadButton()" class="loadItemsButton">Load</button>
+                          <button onclick="onClickSaveButton()" class="saveItemsButton">Save</button>
+                      </div>
+                  </div>
+                  <div id="itemList"></div>
+              </div>
+              <div id="paramInputArea">
+                  <div id="paramAreaLabel">
+                      <div>Parameter</div>
+                  </div>
+                  <div id="squareParamArea" class="paramArea">
+                      <div class="paramRow">
+                          <div class="paramName">Name</div>
+                          <input id="squareParamName" type="text" class="paramInputText"
+                              onchange="onChangeSquareParamName()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Left</div>
+                          <input id="squareParamX" type="number" class="paramInputNumber"
+                              onchange="onChangeSquareParamX()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Top</div>
+                          <input id="squareParamY" type="number" class="paramInputNumber"
+                              onchange="onChangeSquareParamY()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Width</div>
+                          <input id="squareParamWidth" type="number" class="paramInputNumber"
+                              onchange="onChangeSquareParamWidth()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Height</div>
+                          <input id="squareParamHeight" type="number" class="paramInputNumber"
+                              onchange="onChangeSquareParamHeight()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Color</div>
+                          <input id="squareParamColor" type="color" class="paramInputColor"
+                              onchange="onChangeSquareParamColor()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Layer</div>
+                          <div>
+                              <div id="squareParamLayer" class="paramLayer"></div>
+                              <button onclick="onChangeLayerUp()" class="paramLayerButton">↑</button>
+                              <button onclick="onChangeLayerDown()" class="paramLayerButton">↓</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div id="circleParamArea" class="paramArea">
+                      <div class="paramRow">
+                          <div class="paramName">Name</div>
+                          <input id="circleParamName" type="text" class="paramInputText"
+                              onchange="onChangeCircleParamName()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">x</div>
+                          <input id="circleParamX" type="number" class="paramInputNumber"
+                              onchange="onChangeCircleParamX()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">y</div>
+                          <input id="circleParamY" type="number" class="paramInputNumber"
+                              onchange="onChangeCircleParamY()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Radius</div>
+                          <input id="circleParamRadius" type="number" class="paramInputNumber"
+                              onchange="onChangeCircleParamRadius()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Oblateness</div>
+                          <input id="circleParamOblateness" type="number" class="paramInputNumber"
+                              onchange="onChangeCircleParamOblateness()" step="0.1">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Rotation</div>
+                          <input id="circleParamRotation" type="number" class="paramInputNumber"
+                              onchange="onChangeCircleParamRotation()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Color</div>
+                          <input id="circleParamColor" type="color" class="paramInputColor"
+                              onchange="onChangeCircleParamColor()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Start angle</div>
+                          <input id="circleParamStartAngle" type="number" class="paramInputNumber"
+                              onchange="onChangeCircleParamStartAngle()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">End angle</div>
+                          <input id="circleParamEndAngle" type="number" class="paramInputNumber"
+                              onchange="onChangeCircleParamEndAngle()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Layer</div>
+                          <div>
+                              <div id="circleParamLayer" class="paramLayer"></div>
+                              <button onclick="onChangeLayerUp()" class="paramLayerButton">↑</button>
+                              <button onclick="onChangeLayerDown()" class="paramLayerButton">↓</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div id="triangleParamArea" class="paramArea">
+                      <div class="paramRow">
+                          <div class="paramName">Name</div>
+                          <input id="triangleParamName" type="text" class="paramInputText"
+                              onchange="onChangeTriangleParamName()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">V1 x</div>
+                          <input id="triangleParamV1X" type="number" class="paramInputNumber"
+                              onchange="onChangeTriangleParamV1X()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">V1 y</div>
+                          <input id="triangleParamV1Y" type="number" class="paramInputNumber"
+                              onchange="onChangeTriangleParamV1Y()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">V2 x</div>
+                          <input id="triangleParamV2X" type="number" class="paramInputNumber"
+                              onchange="onChangeTriangleParamV2X()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">V2 y</div>
+                          <input id="triangleParamV2Y" type="number" class="paramInputNumber"
+                              onchange="onChangeTriangleParamV2Y()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">V3 x</div>
+                          <input id="triangleParamV3X" type="number" class="paramInputNumber"
+                              onchange="onChangeTriangleParamV3X()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">V3 y</div>
+                          <input id="triangleParamV3Y" type="number" class="paramInputNumber"
+                              onchange="onChangeTriangleParamV3Y()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Color</div>
+                          <input id="triangleParamColor" type="color" class="paramInputColor"
+                              onchange="onChangeTriangleParamColor()">
+                          </input>
+                      </div>
+                      <div class="paramRow">
+                          <div class="paramName">Layer</div>
+                          <div>
+                              <div id="triangleParamLayer" class="paramLayer"></div>
+                              <button onclick="onChangeLayerUp()" class="paramLayerButton">↑</button>
+                              <button onclick="onChangeLayerDown()" class="paramLayerButton">↓</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </body>
+</html>
