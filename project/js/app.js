@@ -2,6 +2,14 @@ function init() {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
 
+  let scaleFactor = 1;
+  const zoomSpeed = 0.1;
+  let image = null;
+  let isDragging = false;
+  let isSpacePressed = false;
+  let dragStart = { x: 0, y: 0 };
+  let offset = { x: 0, y: 0 };
+
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -12,6 +20,7 @@ function init() {
   }
 
   function drawGrid() {
+    const gridSize = 50 * scaleFactor;
     const majorLineEvery = 4;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -63,6 +72,7 @@ function init() {
     const y = (canvas.height - imgHeight) / 2 + offset.y;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawGrid();
     ctx.drawImage(image, x, y, imgWidth, imgHeight);
   }
 
@@ -88,18 +98,25 @@ function init() {
       dragStart = { x: event.clientX, y: event.clientY };
       offset.x += dx;
       offset.y += dy;
+      resizeCanvas();
     }
   }
 
-  function handleMouseUp() {}
+  function handleMouseUp() {
+    isDragging = false;
+  }
 
   function handleKeyDown(event) {
     if (event.code === 'Space') {
+      isSpacePressed = true;
+      canvas.style.cursor = 'grab';
     }
   }
 
   function handleKeyUp(event) {
     if (event.code === 'Space') {
+      isSpacePressed = false;
+      canvas.style.cursor = 'default';
     }
   }
 
@@ -131,7 +148,9 @@ function init() {
 
       reader.onload = function (event) {
         image = new Image();
-        image.onload = function () {};
+        image.onload = function () {
+          resizeCanvas();
+        };
         image.src = event.target.result;
       };
       reader.readAsDataURL(file);
